@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs, ... }: 
+{ pkgs, nixpkgs, ... }:
   let
     config = (import ../../config.nix { inherit pkgs; });
   in
@@ -21,7 +21,7 @@
   programs.eza.enable = true;
   programs.zsh.enable = true;
   programs.zsh.enableCompletion = true;
-  programs.zsh.enableAutosuggestions = true;
+  programs.zsh.autosuggestion.enable = true;
   programs.zsh.syntaxHighlighting.enable = true;
   programs.zsh.initExtra = ''
     export GEM_HOME="$HOME/.gem"
@@ -58,13 +58,11 @@
 
   programs.ssh = {
     enable = true;
-    extraConfig = ''
-      Host *
-        IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-    '';
+    extraConfig = (builtins.readFile ./dotfiles/sshConfig );
   };
 
   home.file.".inputrc".source = ./dotfiles/inputrc;
   home.file.".gitconfig".source = ./dotfiles/gitconfig;
   home.file.".my.cnf".source = ./dotfiles/my.cnf;
+  home.file."pgpass".source = ./dotfiles/pgpass;
 }

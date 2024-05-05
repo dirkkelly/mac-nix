@@ -27,11 +27,11 @@ rec {
   ];
 
   casks = [ 
-    "1password"
-    "google-chrome" 
-    "iterm2"
-    "rectangle"
-    "raycast"
+    # "1password"
+    #"google-chrome" 
+    #"iterm2"
+    #"rectangle"
+    # "raycast"
   ];
 
   nix_packages = with pkgs; [
